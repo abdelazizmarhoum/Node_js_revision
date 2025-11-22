@@ -1,0 +1,27 @@
+                                EXPRESS EN NODEJS
+
+1 : definition de express
+Express est un cadre minimaliste pour construire des applications Web et des API RESTful avec Node.js.
+2 : creation d une application express simple
+Pour créer une application express simple, vous devez suivre ces étapes :
+
+    a- Installer express :
+    npm install express
+
+    b- Importer express :
+    const express = require('express');
+
+    c- Créer une application express :
+    const app = express();
+
+    d- Définir le port :
+    const port = 3000;
+        - vous pouvez utiliser le fichier .env qui contain se code la : 
+          PORT = 3000
+          est voici comment vous pouvez l'utiliser en votre js fichier: 
+          const port = process.env.PORT || 3000;
+
+    e- démarer le serveur : 
+    app.listen(port, () => {
+      console.log("demarer sur le port ", port);
+    });
