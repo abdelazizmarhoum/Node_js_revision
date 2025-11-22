@@ -91,5 +91,3 @@ les étapes pour initialiser un projet Node.js
     // on utilise maintenant let et const
     // let permet de déclarer des variables qui peuvent être modifiées plus tard
     // const permet de déclarer des variables qui ne peuvent pas être modifiées plus tard
-
-

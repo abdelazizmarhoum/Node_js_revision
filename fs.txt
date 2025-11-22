@@ -1,0 +1,29 @@
+                                        FS EN NODEJS
+
+
+1 : definition de fs
+fs est un module de nodejs qui permet de travailler avec le systeme de fichier en mode asynchrone et non bloquant.
+il peux lire un html , json fichier
+
+2 : installation de fs
+npm install fs
+
+3 : utilisation de fs
+const fs = require('fs')
+
+4 : methode de fs
+fs.readFile() -> permet de lire un fichier
+
+5 : exmample de lire un fichier
+    app.get("/", (req, res) => {
+        fs.readFile("./index.html", null, (err, data) => {
+
+            // si il y a une erreur
+
+            if (err) {
+                res.end("file not found");
+            } else {
+                res.end(data);
+            }
+        });
+    });
