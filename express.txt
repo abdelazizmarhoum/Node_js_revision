@@ -36,3 +36,7 @@ Pour créer une application express simple, vous devez suivre ces étapes :
     // listen -> demarrer le serveur
     // get -> methode http get
 
+
+let montantHt = this.prixHT * this.qnt;
+let montantTva = montantHt * (this.tva / 100);
+let montantTTC = montantHt + montantTva;
