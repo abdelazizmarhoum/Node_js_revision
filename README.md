@@ -144,4 +144,4 @@ db.query('SELECT * FROM table WHERE id = ?', [id], (err, results) => {
 - `03-05` : Serveur Web & Formulaires.
 - `06-08` : MySQL & CRUD.
 - `09` : Modularité.
-- `10_Examen` : **Annales et solutions d'examens réels.**
+- `10_Examen` : **solutions d'examens.**
