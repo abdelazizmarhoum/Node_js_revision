@@ -80,19 +80,6 @@ fs.readFile('page.html', 'utf8', (err, data) => {
 - **POST** : Envoyer des données (formulaire).
 - **Paramètres** : `app.get('/user/:id', ...)` -> accessed via `req.params.id`.
 
-### Headers & Tokens (Examen)
-Certains examens demandent de vérifier un token dans les headers.
-```javascript
-app.get('/prive', (req, res) => {
-    const token = req.headers['token'];
-    if (!token) {
-        res.status(401).send("Accès refusé");
-    } else {
-        res.send("Bienvenue");
-    }
-});
-```
-
 ### Codes d'état HTTP (Status Codes)
 - `200` : OK (Succès).
 - `201` : Created (Création réussie).
