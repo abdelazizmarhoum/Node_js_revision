@@ -1,151 +1,147 @@
-# 🚀 Révision Node.js & Express
+# 🚀 Révision Node.js & Express - Guide Complet
 
-Ce dépôt contient l'essentiel pour réviser Node.js, Express et MySQL avec une syntaxe simple et directe.
-
----
-
-## 1. Initialisation d'un Projet
-Pour commencer un projet Node.js :
-1. `mkdir mon_projet` (Créer le dossier)
-2. `cd mon_projet` (Entrer dans le dossier)
-3. `npm init -y` (Initialiser le fichier `package.json`)
-4. `npm install express body-parser mysql prompt-sync` (Installer les outils)
+Ce guide récapitule les points essentiels pour l'examen, en utilisant une syntaxe simplifiée.
 
 ---
 
-## 2. Syntaxe de Base (JavaScript)
+## 1. Configuration du Projet
+- `npm init -y` : Créer le fichier `package.json`.
+- `npm install express body-parser mysql prompt-sync` : Installer les dépendances.
+- `node index.js` : Lancer votre application.
 
-### Variables
-- `let` : Variable qui peut changer.
-- `const` : Valeur fixe qui ne change pas.
+---
 
-### Conditions
-```javascript
-if (age >= 18) {
-    console.log("Majeur");
-} else {
-    console.log("Mineur");
-}
-```
+## 2. Bases du JavaScript
 
-### Boucles
-```javascript
-// Boucle For
-for (let i = 0; i < 5; i++) {
-    console.log(i);
-}
+### Variables & Types
+- `let` : Variable modifiable.
+- `const` : Constante non modifiable.
+- `parseInt()` / `parseFloat()` : Convertir du texte en nombre.
 
-// Boucle While
-while (condition) {
-    // code
-}
-```
+### Boucles & Logique
+- **For** : `for (let i = 0; i < tab.length; i++) { ... }`
+- **While** : `while (condition) { ... }`
+- **If/Else** : `if (age < 18) { ... } else { ... }`
 
 ---
 
 ## 3. Programmation Orientée Objet (OOP)
+On utilise les classes pour organiser les données et les calculs.
+
 ```javascript
-class Produit {
-    constructor(nom, prix) {
+class Enseignant {
+    constructor(nom, heures, taux) {
         this.nom = nom;
-        this.prix = prix;
+        this.heures = heures;
+        this.taux = taux;
     }
 
-    afficher() {
-        console.log(this.nom + " coûte " + this.prix);
+    // Méthode de calcul
+    calculerSalaire() {
+        return this.heures * this.taux;
     }
 }
 
 // Héritage
-class Electronique extends Produit { }
+class Chercheur extends Enseignant {
+    constructor(nom, heures, taux, prime) {
+        super(nom, heures, taux);
+        this.prime = prime;
+    }
+    
+    // Surcharge de méthode
+    calculerSalaire() {
+        return super.calculerSalaire() + this.prime;
+    }
+}
 ```
 
 ---
 
 ## 4. Système de Fichiers (Module FS)
+Utile pour lire des fichiers texte ou des templates HTML.
+
 ```javascript
 const fs = require('fs');
 
-// Lire un fichier
-fs.readFile('data.txt', 'utf8', (err, data) => {
-    console.log(data);
-});
-
-// Écrire un fichier
-fs.writeFile('data.txt', 'Bonjour', (err) => {
+// Lecture asynchrone
+fs.readFile('page.html', 'utf8', (err, data) => {
     if (err) throw err;
+    console.log(data);
 });
 ```
 
 ---
 
-## 5. Serveur Web avec Express
+## 5. Web & Express Framework
 
-### Configuration Simple
+### Routes & Paramètres
+- **GET** : Récupérer des données.
+- **POST** : Envoyer des données (formulaire).
+- **Paramètres** : `app.get('/user/:id', ...)` -> accessed via `req.params.id`.
+
+### Headers & Tokens (Examen)
+Certains examens demandent de vérifier un token dans les headers.
 ```javascript
-const express = require('express');
-const app = express();
-
-app.get('/', (req, res) => {
-    res.send('Bonjour le monde');
+app.get('/prive', (req, res) => {
+    const token = req.headers['token'];
+    if (!token) {
+        res.status(401).send("Accès refusé");
+    } else {
+        res.send("Bienvenue");
+    }
 });
-
-app.listen(3000);
 ```
 
-### Body-Parser (Formulaires)
+### Codes d'état HTTP (Status Codes)
+- `200` : OK (Succès).
+- `201` : Created (Création réussie).
+- `401` : Unauthorized (Non autorisé).
+- `404` : Not Found (Page non trouvée).
+- `500` : Internal Server Error.
+
+---
+
+## 6. Body-Parser & Formulaires
+Indispensable pour récupérer `req.body` dans une route **POST**.
+
 ```javascript
 const bodyParser = require('body-parser');
 app.use(bodyParser.urlencoded({ extended: true }));
 
-app.post('/login', (req, res) => {
-    const user = req.body.nom;
-    res.send("Bienvenue " + user);
-});
-```
-
-### Paramètres d'URL
-```javascript
-app.get('/user/:id', (req, res) => {
-    const id = req.params.id; // Récupère l'ID depuis l'URL
-    res.send("Utilisateur ID: " + id);
+app.post('/calcul', (req, res) => {
+    const v1 = parseInt(req.body.v1);
+    res.send("Valeur : " + v1);
 });
 ```
 
 ---
 
-## 6. Base de Données (MySQL)
+## 7. Base de Données (MySQL)
 ```javascript
 const mysql = require('mysql');
+const db = mysql.createConnection({ ... });
 
-const db = mysql.createConnection({
-    host: 'localhost',
-    user: 'root',
-    password: '',
-    database: 'ma_base'
-});
+// INSERT avec objet
+db.query('INSERT INTO table SET ?', { nom: 'Aziz', age: 25 }, callback);
 
-// Requête Simple
-db.query('SELECT * FROM personne', (err, results) => {
-    console.log(results);
-});
-
-// Requête Paramétrée (Sécurité)
-db.query('SELECT * FROM personne WHERE mat = ?', [id], (err, result) => {
-    // ...
+// SELECT avec paramètre
+db.query('SELECT * FROM table WHERE id = ?', [id], (err, results) => {
+    res.send(results[0]);
 });
 ```
 
 ---
 
-## 7. Modules (Export / Import)
+## 8. Modules (Export / Import)
 - **Export** : `module.exports = MaClasse;`
 - **Import** : `const MaClasse = require('./mon_fichier.js');`
 
 ---
 
 ## 📂 Structure du Dépôt
-- `00-02` : Bases de Node.js, OOP et Fichiers.
-- `03-05` : Express et gestion des formulaires.
-- `06-08` : MySQL et Opérations CRUD.
-- `09` : Organisation du code en modules.
+- `00-02` : Bases & OOP.
+- `03-05` : Serveur Web & Formulaires.
+- `06-08` : MySQL & CRUD.
+- `09` : Modularité.
+- `10_Examen` : **Annales et solutions d'examens réels.**

@@ -1,0 +1,7 @@
+A)
+On veut écrire un programme gérant le coût des enseignants d'une école. Chaque enseignant a un nom, un prénom et un certain nombre d'heures de cours assurées dans l'année. Il existe plusieurs catégories d'enseignants. Les enseignants-chercheurs ont un salaire de base plus une prime. Les vacataires sont des enseignants venant d'un organisme extérieur de l'école, ont salaire de base qu'est calculé en fonction: le nombre de cours assurées multiplié par le taux horaire. On veut, pour chaque enseignant, pouvoir connaitre ce qu'il coûte à l'école (salaire + charges) c.à.d. le salaire net de l'enseignant. Proposez un code JavaScript qui représente ces informations et soit le plus conforme aux principes de la programmation objet.
+B)
+1) A l'aide du module 'fs' écrire un programme qui lit un fichier textuel et le reproduit dans la console. Prenez le soin d'afficher un message "reading file, please wait" en attendant la lecture du fichier.
+2) Créer un fichier Javascript nommé server.js et qui sera exécuté dans l'environnement Node.js. Ce fichier-là contiendra le code qui permettra de créer le serveur HTTP, écouter les requêtes du client et affichera une page home.html.
+La page home.html contient deux boutons << Accueil << et
+<<< Informations >>>

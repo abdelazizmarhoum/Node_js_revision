@@ -1,0 +1,15 @@
+On se propose de développer un système de location de voiture.
+Une voiture est caractérisée par son immatriculation, sa marque, son modèle, année: la date de sa première mise en circulation et prix: le prix de location par jour.
+Un client est identifié par sa CIN, on garde son nom, son prénom, son adresse et sa date de naissance.
+Une réservation est identifiée par un id et caractérisée par une date, la date de début, la date de fin de la réservation, le client et la voiture.
+Le système est composé d'une API et un site web.
+L'API offre les URLs suivantes:
+POST: '/clients/register': permet d'ajouter un client et retourne un nom et un mot de passe avec le code '201', si le client à moins de 18 ans, un message <<< Le client doit avoir au moins 18
+POST: '/reservations/': ajoute une réservation avec toutes ses informations: (les dates, le client et la voiture). Vérifie si le token existe dans le header de la requête, sinon le code 401 est retourné.
+Le site web affiche les réservations par date:
+GET:'/reservations/:date': remplit les réservations selon la date dans une liste 'reservations' et renvoie la template 'reservations.html'. Vérifie si le token existe dans le header de la requête, sinon le code 401 est retourné.
+Travail Demandé :
+1) Proposez la structure du projet nodejs: les dossiers et les fichiers.
+2) Quels sont les modules nécessaires pour le développement du système ?
+3) Développez la Template << reservations.html >>>
+4) Développez le fichier index.js
