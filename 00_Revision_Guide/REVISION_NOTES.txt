@@ -1,0 +1,39 @@
+                                REFERANCE NODE.JS
+
+1 : initialiser un projet Node.js
+    - mkdir nom_du_dossier
+    - cd nom_du_dossier
+    - npm init -y
+
+2 : packages importants
+    - npm install prompt-sync : pour les entrées utilisateur
+    - npm install express : framework web
+    - fs : module pour les fichiers (déjà installé)
+
+3 : commandes utiles
+    - npm install : installe les packages
+    - node index.js : lancer le code
+
+4 : les variables
+    - let a = 1; (modifiable)
+    - const b = 2; (fixe)
+
+5 : les conditions
+    if (age >= 18) {
+        console.log('majeur');
+    } else {
+        console.log('mineur');
+    }
+
+6 : les boucles
+    for (let i = 0; i < 10; i++) {
+        console.log(i);
+    }
+
+    while (condition) {
+        // code
+    }
+
+7 : incrementation
+    a++ : a = a + 1
+    a-- : a = a - 1

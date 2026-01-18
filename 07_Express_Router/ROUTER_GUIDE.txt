@@ -1,0 +1,257 @@
+╔═════════════════════════════════════════════════════════════════════════════╗
+║                    EXPRESS ROUTER - ORGANISER LES ROUTES                     ║
+╚═════════════════════════════════════════════════════════════════════════════╝
+
+
+══════════════════════════════════════════════════════════════════════════════
+1. QU'EST-CE QUE EXPRESS ROUTER ?
+══════════════════════════════════════════════════════════════════════════════
+
+Express Router permet de :
+
+  ▪ Organiser les routes en modules séparés
+  ▪ Grouper les routes logiquement (users, products, etc.)
+  ▪ Rendre le code plus lisible et maintenable
+  ▪ Réutiliser des groupes de routes
+  ▪ Gérer les middlewares par groupe de routes
+
+
+══════════════════════════════════════════════════════════════════════════════
+2. STRUCTURE DE BASE
+══════════════════════════════════════════════════════════════════════════════
+
+Express Router est intégré dans Express (pas d'installation nécessaire)
+
+const express = require('express');
+const router = express.Router();
+
+// Définir une route
+router.get('/', (req, res) => {
+    res.send('Accueil');
+});
+
+// Exporter le router
+module.exports = router;
+
+
+══════════════════════════════════════════════════════════════════════════════
+3. ORGANISATION DES FICHIERS
+══════════════════════════════════════════════════════════════════════════════
+
+Structure recommandée :
+
+  projet/
+  ├── index.js
+  ├── routes/
+  │   ├── users.js
+  │   ├── products.js
+  │   └── orders.js
+  └── views/
+      ├── users.html
+      ├── products.html
+      └── orders.html
+
+Cette organisation permet de gérer facilement chaque ressource.
+
+
+══════════════════════════════════════════════════════════════════════════════
+4. CRÉER UN ROUTER (routes/users.js)
+══════════════════════════════════════════════════════════════════════════════
+
+const express = require('express');
+const router = express.Router();
+
+// GET tous les utilisateurs
+router.get('/', (req, res) => {
+    res.json({ message: 'Liste des utilisateurs' });
+});
+
+// GET un utilisateur
+router.get('/:id', (req, res) => {
+    const id = req.params.id;
+    res.json({ message: `Utilisateur ${id}` });
+});
+
+// POST créer un utilisateur
+router.post('/', (req, res) => {
+    res.json({ message: 'Utilisateur créé' });
+});
+
+// PUT modifier un utilisateur
+router.put('/:id', (req, res) => {
+    const id = req.params.id;
+    res.json({ message: `Utilisateur ${id} modifié` });
+});
+
+// DELETE supprimer un utilisateur
+router.delete('/:id', (req, res) => {
+    const id = req.params.id;
+    res.json({ message: `Utilisateur ${id} supprimé` });
+});
+
+module.exports = router;
+
+
+══════════════════════════════════════════════════════════════════════════════
+5. UTILISER LE ROUTER DANS L'APPLICATION (index.js)
+══════════════════════════════════════════════════════════════════════════════
+
+const express = require('express');
+const usersRouter = require('./routes/users');
+const productsRouter = require('./routes/products');
+
+const app = express();
+
+// Utiliser les routers
+app.use('/users', usersRouter);        // Préfixe /users
+app.use('/products', productsRouter);  // Préfixe /products
+
+app.listen(3000, () => {
+    console.log('Serveur lancé');
+});
+
+Routes disponibles :
+  GET /users         → tous les utilisateurs
+  GET /users/5       → utilisateur 5
+  POST /users        → créer un utilisateur
+  PUT /users/5       → modifier utilisateur 5
+  DELETE /users/5    → supprimer utilisateur 5
+
+
+══════════════════════════════════════════════════════════════════════════════
+6. ROUTES IMBRIQUÉES
+══════════════════════════════════════════════════════════════════════════════
+
+Vous pouvez créer des routes imbriquées :
+
+const router = express.Router();
+
+// Routes pour les utilisateurs
+router.get('/', (req, res) => {
+    res.send('Tous les utilisateurs');
+});
+
+// Routes imbriquées pour les commandes d'un utilisateur
+router.get('/:id/orders', (req, res) => {
+    const userId = req.params.id;
+    res.send(`Commandes de l'utilisateur ${userId}`);
+});
+
+Exemple :
+  GET /users/5/orders → Commandes de l'utilisateur 5
+
+
+══════════════════════════════════════════════════════════════════════════════
+7. MIDDLEWARES AVEC ROUTER
+══════════════════════════════════════════════════════════════════════════════
+
+Appliquer des middlewares à certaines routes :
+
+const router = express.Router();
+
+// Middleware pour vérifier l'authentification
+const checkAuth = (req, res, next) => {
+    const token = req.headers.authorization;
+    if (!token) {
+        return res.status(401).send('Non authentifié');
+    }
+    next();
+};
+
+// Appliquer le middleware
+router.use(checkAuth);  // Pour toutes les routes du router
+
+// Ou seulement pour certaines routes
+router.delete('/:id', checkAuth, (req, res) => {
+    res.send('Suppression autorisée');
+});
+
+
+══════════════════════════════════════════════════════════════════════════════
+8. PARAMÈTRES DE ROUTE
+══════════════════════════════════════════════════════════════════════════════
+
+Utiliser les paramètres :
+
+// Route avec un paramètre
+router.get('/:id', (req, res) => {
+    const id = req.params.id;
+    res.send(`ID: ${id}`);
+});
+
+// Route avec plusieurs paramètres
+router.get('/:userId/posts/:postId', (req, res) => {
+    const userId = req.params.userId;
+    const postId = req.params.postId;
+    res.send(`Post ${postId} de l'utilisateur ${userId}`);
+});
+
+// Query strings
+router.get('/search', (req, res) => {
+    const query = req.query.q;  // ?q=texte
+    res.send(`Recherche: ${query}`);
+});
+
+
+══════════════════════════════════════════════════════════════════════════════
+9. AVANTAGES DU ROUTER
+══════════════════════════════════════════════════════════════════════════════
+
+✓ Code plus organisé et modulaire
+✓ Facile à maintenir et à étendre
+✓ Réutilisable dans d'autres projets
+✓ Meilleure gestion des erreurs
+✓ Middlewares spécifiques par router
+✓ Scalabilité
+
+
+══════════════════════════════════════════════════════════════════════════════
+10. EXEMPLE COMPLET
+══════════════════════════════════════════════════════════════════════════════
+
+// index.js
+const express = require('express');
+const app = express();
+
+const usersRouter = require('./routes/users');
+const ordersRouter = require('./routes/orders');
+
+app.use(express.json());
+app.use('/api/users', usersRouter);
+app.use('/api/orders', ordersRouter);
+
+app.listen(3000, () => {
+    console.log('Serveur sur port 3000');
+});
+
+
+// routes/users.js
+const express = require('express');
+const router = express.Router();
+
+router.get('/', (req, res) => {
+    res.json([
+        { id: 1, nom: 'Jean', email: 'jean@email.com' },
+        { id: 2, nom: 'Marie', email: 'marie@email.com' }
+    ]);
+});
+
+router.post('/', (req, res) => {
+    res.json({ message: 'Utilisateur créé', id: 3 });
+});
+
+module.exports = router;
+
+
+// routes/orders.js
+const express = require('express');
+const router = express.Router();
+
+router.get('/', (req, res) => {
+    res.json([
+        { id: 101, userId: 1, total: 250 },
+        { id: 102, userId: 2, total: 180 }
+    ]);
+});
+
+module.exports = router;

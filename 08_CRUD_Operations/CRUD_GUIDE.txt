@@ -1,0 +1,13 @@
+                                CRUD OPERATIONS
+
+1 : C (Create) -> INSERT
+    db.query('INSERT INTO personne SET ?', data, callback);
+
+2 : R (Read) -> SELECT
+    db.query('SELECT * FROM personne', callback);
+
+3 : U (Update) -> UPDATE
+    db.query('UPDATE personne SET nom = ? WHERE mat = ?', [nom, id], callback);
+
+4 : D (Delete) -> DELETE
+    db.query('DELETE FROM personne WHERE mat = ?', [id], callback);

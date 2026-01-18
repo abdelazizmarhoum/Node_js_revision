@@ -1,0 +1,9 @@
+                                MODULES EXPORT
+
+1 : exporter (produit.js)
+    class Produit { ... }
+    module.exports = Produit;
+
+2 : importer (app.js)
+    const Produit = require('./produit.js');
+    let p = new Produit();

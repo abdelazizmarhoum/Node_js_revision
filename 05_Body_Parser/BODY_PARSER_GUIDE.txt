@@ -1,0 +1,14 @@
+                                BODY-PARSER
+
+1 : installation
+    npm install body-parser
+
+2 : configuration
+    const bodyParser = require('body-parser');
+    app.use(bodyParser.urlencoded({ extended: true }));
+
+3 : recuperer les donnees
+    app.post('/route', (req, res) => {
+        const nom = req.body.nom;
+        res.send(nom);
+    });

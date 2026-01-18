@@ -1,0 +1,23 @@
+                                MYSQL DATABASE
+
+1 : installation
+    npm install mysql
+
+2 : connexion
+    const mysql = require('mysql');
+    const db = mysql.createConnection({
+        host: 'localhost',
+        user: 'root',
+        password: '',
+        database: 'ma_base'
+    });
+
+3 : requete simple
+    db.query('SELECT * FROM personne', (err, result) => {
+        console.log(result);
+    });
+
+4 : requete avec parametre
+    db.query('SELECT * FROM personne WHERE mat = ?', [id], (err, result) => {
+        // code
+    });

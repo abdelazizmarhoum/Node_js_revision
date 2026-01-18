@@ -1,0 +1,39 @@
+╔═════════════════════════════════════════════════════════════════════════════╗
+║                    LES ROUTES ET LES PARAMÈTRES D'URL                       ║
+╚═════════════════════════════════════════════════════════════════════════════╝
+
+1. DÉFINITION D'UNE ROUTE SIMPLE
+   Une route permet de répondre à une requête spécifique du client.
+
+   app.get('/', (req, res) => {
+       res.send('Accueil');
+   });
+
+2. LES PARAMÈTRES DE ROUTE (id, etc.)
+   Les paramètres permettent de rendre une route dynamique. On utilise les ":" pour définir un paramètre.
+
+   app.get('/utilisateurs/:id', (req, res) => {
+       const id = req.params.id;
+       res.send("Détails de l'utilisateur numéro : " + id);
+   });
+
+3. ACCÉDER AUX PARAMÈTRES
+   On utilise "req.params" pour récupérer les valeurs envoyées dans l'URL.
+
+   Exemple :
+   URL : http://localhost:3000/utilisateurs/5
+   Code : req.params.id  → donnera "5"
+
+4. PARAMÈTRES MULTIPLES
+   On peut utiliser plusieurs paramètres dans une même route.
+
+   app.get('/cours/:id_cours/etudiant/:id_etu', (req, res) => {
+       const id_c = req.params.id_cours;
+       const id_e = req.params.id_etu;
+       res.send("Cours : " + id_c + ", Etudiant : " + id_e);
+   });
+
+5. RÉSUMÉ
+   ✓ Les routes se définissent avec app.get(), app.post(), etc.
+   ✓ On utilise ":" pour rendre une partie de l'URL variable.
+   ✓ On récupère les valeurs avec req.params.nom_du_variabe.

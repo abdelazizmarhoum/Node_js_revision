@@ -1,0 +1,22 @@
+                                LES CLASSES (OOP)
+
+1 : structure d'une classe
+    class Nom {
+        constructor(a, b) {
+            this.a = a;
+            this.b = b;
+        }
+
+        afficher() {
+            console.log(this.a);
+        }
+    }
+
+2 : l'heritage (extends)
+    class Etudiant extends Personne {
+        // code
+    }
+
+3 : utiliser une classe
+    const objet = new Nom(1, 2);
+    objet.afficher();

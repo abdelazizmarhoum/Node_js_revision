@@ -1,0 +1,16 @@
+                                EXRESS JS
+
+1 : setup express
+    const express = require('express');
+    const app = express();
+    const port = 3000;
+
+2 : les routes (GET)
+    app.get('/', (req, res) => {
+        res.send('bonjour');
+    });
+
+3 : demarrer
+    app.listen(port, () => {
+        console.log('serveur en marche');
+    });

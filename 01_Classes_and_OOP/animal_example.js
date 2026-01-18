@@ -35,8 +35,3 @@ class Cat extends Animal {
 const cat = new Cat('tim', 'red')
 cat.desc()
 cat.speak()
-
-
-
-
-

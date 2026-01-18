@@ -1,0 +1,10 @@
+                                EXERCICES PRATIQUES
+
+1 : gestion etudiants
+    - creer une classe Etudiant
+    - ajouter des etudiants dans un tableau
+    - afficher la liste
+
+2 : serveur express
+    - creer une route /etudiants
+    - envoyer le tableau en reponse

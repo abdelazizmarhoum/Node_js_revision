@@ -1,0 +1,19 @@
+                                LE MODULE FS
+
+1 : Importer le module
+    const fs = require('fs');
+
+2 : Lire un fichier
+    fs.readFile('nom_fichier', 'utf8', (err, data) => {
+        if (err) {
+            console.log('erreur');
+        } else {
+            console.log(data);
+        }
+    });
+
+3 : Ecrire un fichier
+    fs.writeFile('nom_fichier', 'contenu', (err) => {
+        if (err) throw err;
+        console.log('fini');
+    });
