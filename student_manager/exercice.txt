@@ -1,0 +1,65 @@
+Create a new folder named student_manager.
+
+Open the folder in a terminal and initialize a Node.js project.
+
+Install the necessary dependencies: express, mysql, and body-parser.
+
+Create the files index.js and index.html inside the project folder.
+
+Explain the purpose of index.js, index.html, and package.json.
+
+Import the required modules in index.js: mysql, express, body-parser, fs.
+
+Create an Express application instance.
+
+Configure the application to use body-parser for JSON and URL-encoded form data.
+
+Declare a variable port and set it to 4000.
+
+Connect to a MySQL database named students using the proper connection parameters (host, user, password, database).
+
+Display a message in the console when the database connection is successful or failed.
+
+Create a GET route / that serves the index.html file using the fs module.
+
+Create a POST route /student to insert a new student into the database using data sent from the form.
+
+Create a GET route /students to retrieve all students from the database and return them in JSON format.
+
+Create a GET route /student/:id to retrieve a single student by ID and return it in JSON format.
+
+Create a PUT route /student/:id to update the name, class, and age of a student based on their ID.
+
+Create a DELETE route /student/:id to remove a student from the database using their ID.
+
+Start the server on the specified port and display a message in the console indicating the server is running.
+
+Create an index.html form to add a new student with input fields for:
+
+Name
+
+Class
+
+Age
+
+A submit button
+
+Ensure the input name attributes match the keys expected in your POST route (name, student_class, age).
+
+Explain how the form sends data to the server using the POST method.
+
+Test each route using either a browser or Postman to verify the CRUD operations work correctly:
+
+Add a student
+
+Retrieve all students
+
+Retrieve a student by ID
+
+Update a student
+
+Delete a student
+
+Explain why req.body is used for POST/PUT data and req.params is used for URL parameters.
+
+Explain the difference in MySQL callbacks: when to use (err) vs (err, results).

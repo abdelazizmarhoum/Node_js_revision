@@ -1,11 +1,11 @@
-1) Structure du projet :
+1 . Structure du projet :
 -----------------------
 Examen_Car_Rental/
 ├── index.js          (Fichier principal du serveur)
 ├── reservations.html  (Template pour l'affichage)
 └── package.json      (Fichier des dépendances)
 
-2) Modules nécessaires :
+2 . Modules nécessaires :
 ------------------------
 - express : pour créer le serveur et gérer les routes.
 - body-parser : pour récupérer les données envoyées par les formulaires.

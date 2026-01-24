@@ -1,0 +1,6 @@
+mkdir student_manager
+cd student_manager
+npm init -y
+npm i mysq body-parser fs express
+touch index.js
+touch index.html

@@ -1,0 +1,21 @@
+Il s'agit de réaliser un logiciel d'aide à la gestion d'un entrepôt de stockage de différents produits. Chaque produit est caractérisé par CodeProduit, CodeDepot, libellé, quantité initiale, quantité entrée, quantité sortie et le prox
+
+Le code dépôt doit être = 1 ou 2 ou 3.
+
+Ce logiciel a pour but d'améliorer la répartition des produits et d'assurer la sécurité du dépôt en évitant par exemple, le stockage de certains produits dans le même local ou dans des locaux voisins.
+
+La structure de la table produits est la suivante: CodeProduit, CodeDepot,lib, qlei,qlee,qtes et le prix
+
+A) Écrire le code html: praduits.html
+
+B) Ecrire les codes en utilisant la notion de module:
+
+Insert.js: permet d'insérer on produit dans la base de données.
+
+Liste.js: permet de lister tous les produits
+
+Modijs permet la modification d'un produit
+
+Suppoja Supprimer un produit
+
+En suite écrire le code index.js permet d'appeler ces programanes js

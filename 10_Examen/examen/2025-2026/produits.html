@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Product Management</title>
+</head>
+<body>
+
+    <h2>Add Product</h2>
+
+    <form action="/produit" method="post">
+
+        <label for="CodeProduit">Product Code</label><br>
+        <input type="text" id="CodeProduit" name="CodeProduit" required>
+        <br><br>
+
+        <label for="CodeDepot">Depot Code (1, 2 or 3)</label><br>
+        <input type="number" id="CodeDepot" name="CodeDepot" required>
+        <br><br>
+
+        <label for="lib">Label</label><br>
+        <input type="text" id="lib" name="lib" required>
+        <br><br>
+
+        <label for="qlei">Initial Quantity</label><br>
+        <input type="number" id="qlei" name="qlei" required>
+        <br><br>
+
+        <label for="qlee">Entered Quantity</label><br>
+        <input type="number" id="qlee" name="qlee" required>
+        <br><br>
+
+        <label for="qtes">Quantity</label><br>
+        <input type="number" id="qtes" name="qtes" required>
+        <br><br>
+
+        <label for="prix">Price</label><br>
+        <input type="number" step="0.01" id="prix" name="prix" required>
+        <br><br>
+
+        <button type="submit">Save Product</button>
+
+    </form>
+
+</body>
+</html>
